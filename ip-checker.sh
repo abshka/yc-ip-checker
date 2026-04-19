@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ================= НАСТРОЙКИ =================
-ZONES=("ru-central1-d" "ru-central1-d" "ru-central1-b" "ru-central1-e")
+ZONES=("ru-central1-a" "ru-central1-b" "ru-central1-d" "ru-central1-e")
 
 CREATED_IDS=()
 SAVED_GOOD_DETAILS=()
@@ -136,6 +136,9 @@ while true; do
     if [ "$SUCCESSFUL_CREATIONS" -eq 0 ]; then
         echo "💤 Ни один адрес не создан. Возможно, появились фантомы."
         run_garbage_collector
+
+        echo "   ⏳ Синхронизация квот Яндекса (5 сек)..."
+        sleep 5
         
         # Пересчёт квоты
         EXISTING_IPS_JSON=$(yc vpc address list --folder-id "$FOLDER_ID" --format json 2>/dev/null)
@@ -195,6 +198,9 @@ for ip_str in sys.argv[1].split():
     # Очистка плохого IP
     if [ ${#BAD_IDS[@]} -gt 0 ]; then
         yc vpc address delete "${BAD_IDS[@]}" 2>/dev/null
+        sleep 5
+    else
+        sleep 3
     fi
     
     CREATED_IDS=()
