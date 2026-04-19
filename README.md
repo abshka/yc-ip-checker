@@ -4,7 +4,7 @@
 3. Установить jq: sudo apt install jq
 4. Авторизоваться в yc: yc init
 5. Зайти под рутом: sudo -i
-6. Скачать скрипт: wget https://github.com/abshka/yc-ip-checker/ip-checker.sh
+6. Скачать скрипт: wget https://github.com/abshka/yc-ip-checker/blob/main/ip-checker.sh
 7. Сделать его исполняемым: chmod +x ip-checker.sh
 8. Запустить собственно скрипт: ./ip-checker.sh
 
