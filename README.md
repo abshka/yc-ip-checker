@@ -1,10 +1,35 @@
-# Инструкция по применению
-1. Подключиться к VPS, желательно в самом YC (для простоты), но можно и на другой Linux машине
-2. Установить yc: curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-3. Установить jq: sudo apt install jq
-4. Авторизоваться в yc: yc init
-5. Зайти под рутом: sudo -i
-6. Скачать скрипт: wget https://raw.githubusercontent.com/abshka/yc-ip-checker/refs/heads/main/ip-checker.sh
-7. Сделать его исполняемым: chmod +x ip-checker.sh
-8. Запустить собственно скрипт: ./ip-checker.sh
+#  Инструкция по применению
 
+1. **Подключитесь к VPS** (желательно внутри Yandex Cloud, но работает на любой Linux-машине).
+   
+2. **Установите необходимые пакеты** (`jq` и `python3` нужны для математики сетей, а `screen` — для фоновой работы):
+   ```bash
+   sudo apt update && sudo apt install jq python3 screen curl -y
+   ```
+3. **Установите YC CLI** (официальная утилита Яндекса):
+   ```bash
+   curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+   exec -l $SHELL
+   ```
+
+4. **Авторизуйтесь в Yandex Cloud**:
+   ```bash
+   yc init
+   ```
+   *(Пройдите процесс авторизации по ссылке, выберите нужный каталог и облако по умолчанию).*
+
+5. **Скачайте скрипт и сделайте его исполняемым**:
+   ```bash
+   wget https://raw.githubusercontent.com/abshka/yc-ip-checker/refs/heads/main/ip-checker.sh
+   chmod +x ip-checker.sh
+   ```
+
+6. **Запустите!** Так как поиск адресов может занять несколько часов, настоятельно рекомендуется запускать скрипт в виртуальном экране `screen`, чтобы он не остановился при закрытии SSH-соединения:
+   ```bash
+   screen -S ip-checker
+   ./ip-checker.sh
+   ```
+
+**Лайфхак:** 
+* Чтобы **свернуть** скрипт и оставить его работать в фоне, нажмите на клавиатуре `Ctrl+A`, а затем `D`. Теперь вы можете закрывать терминал или выключать ПК.
+* Чтобы **вернуться** к работающему скрипту позже, введите команду: `screen -r ip-checker`
