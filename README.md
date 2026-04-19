@@ -6,7 +6,5 @@
 5. Зайти под рутом: sudo -i
 6. Скачать скрипт: wget https://github.com/abshka/yc-ip-checker/ip-checker.sh
 7. Сделать его исполняемым: chmod +x ip-checker.sh
-8. Получить folder-id: yc config list и в графе folder-id скопировать значение
-9. Открыть скрипт и заменить folder-id: nano ip-checker.sh и вместо your-folder-id поставить скопированный folder-id
-10. Запустить собственно скрипт: ./ip-checker.sh
+8. Запустить собственно скрипт: ./ip-checker.sh
 
